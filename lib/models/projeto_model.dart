@@ -1,4 +1,4 @@
-import 'package:gtd_app/model/coisa_model.dart';
+import 'package:gtd_app/models/coisa_model.dart';
 
 class ProjetoModel extends CoisaModel {
   ProjetoModel({

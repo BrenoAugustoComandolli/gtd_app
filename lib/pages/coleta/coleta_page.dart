@@ -182,13 +182,9 @@ class _CampoDescricaoWidget extends StatelessWidget {
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
-          border: const OutlineInputBorder(),
           labelText: AppMgsConsts.labelCampoNovo,
           hintText: AppMgsConsts.hintCampoNovo,
           errorText: errorText,
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(width: 2),
-          ),
         ),
       ),
     );

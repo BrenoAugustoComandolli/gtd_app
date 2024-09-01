@@ -3,7 +3,7 @@ class AppMgsConsts {
   static const String titleColetaPage = 'Coleta';
   static const String labelCampoNovo = 'Adicione um novo item';
   static const String hintCampoNovo = 'Ex. limpar o quarto';
-  static const String msgDescriaoObrigatoria = 'A descrição não pode ser vazia!';
+  static const String msgDescriaoObrigatoria = 'Descrição não pode ser vazia!';
   static const String labelBotaoCancelar = 'Cancelar';
   static const String labelBotaoLimparTudo = 'Limpar tudo';
   static const String titleLimpaTudo = 'Limpar tudo?';

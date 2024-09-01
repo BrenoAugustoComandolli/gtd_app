@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gtd_app/consts/app_mgs_consts.dart';
 import 'package:gtd_app/models/coisa_model.dart';
+import 'package:gtd_app/visual/cores_sistema.dart';
 import 'package:intl/intl.dart';
 
 class CoisasItemWidget extends StatelessWidget {
@@ -34,7 +35,7 @@ class CoisasItemWidget extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
-            color: Colors.grey[200],
+            color: CoresSistema.primaryColor.withOpacity(0.30),
           ),
           padding: const EdgeInsets.all(16),
           child: _ConteudoCoisaWidget(

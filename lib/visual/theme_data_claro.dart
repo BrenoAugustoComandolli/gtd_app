@@ -31,6 +31,36 @@ class ThemeDataClaro implements IThemeData {
         ),
       ),
       cardColor: CoresSistema.primaryColor,
+      elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+          iconColor: WidgetStatePropertyAll(Colors.white),
+          foregroundColor: WidgetStatePropertyAll(Colors.white),
+          backgroundColor: WidgetStatePropertyAll(
+            CoresSistema.primaryColor,
+          ),
+        ),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: CoresSistema.primaryColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: CoresSistema.primaryColor, width: 2),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: CoresSistema.primaryColor),
+        ),
+      ),
+      textButtonTheme: const TextButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(
+            CoresSistema.primaryColor,
+          ),
+          foregroundColor: WidgetStatePropertyAll(
+            Colors.white,
+          ),
+        ),
+      ),
       textTheme: const TextTheme(
         titleMedium: TextStyle(
           color: Colors.white,

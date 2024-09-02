@@ -33,6 +33,8 @@ dependencies:
   shared_preferences: ^2.3.2
   flutter_slidable: ^3.1.1
   intl: ^0.19.0
+  flutter_native_splash: ^2.4.1
+  flutter_launcher_icons: ^0.13.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -91,3 +93,26 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+    - assets/imagens/splash_image.png
+    - assets/imagens/splash_image_dark.png
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#000000"
+  image: assets/imagens/splash_image.png
+  image_dark: assets/imagens/splash_image_dark.png
+  android_12:
+    color: "#ffffff"
+    color_dark: "#000000"
+    image: assets/imagens/splash_image.png
+    image_dark: assets/imagens/splash_image_dark.png
+  android: true
+  ios: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/imagens/splash_image.png"
+  min_sdk_android: 21

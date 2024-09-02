@@ -80,6 +80,10 @@ class _ListasPageState extends State<ListasPage> {
         selecionada: selecionada,
         onDelete: onDelete,
         onMove: onMove,
+        onAtualizaListagem: () {
+          repository.salvaListas(listas);
+          setState(() {});
+        },
       ),
     );
   }
@@ -193,12 +197,14 @@ class _ListasWidget extends StatelessWidget {
     required this.listas,
     required this.onDelete,
     required this.onMove,
+    required this.onAtualizaListagem,
   });
 
   final String selecionada;
   final Map<String, List<CoisaModel>> listas;
   final Function(CoisaModel coisa) onDelete;
   final Function(CoisaModel coisa) onMove;
+  final VoidCallback onAtualizaListagem;
 
   @override
   Widget build(BuildContext context) {
@@ -208,9 +214,11 @@ class _ListasWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ListView(
+      child: ReorderableListView(
+        onReorder: _onReorder,
         children: listas[selecionada]!.map((CoisaModel coisa) {
           return CoisasItemWidget(
+            key: Key(coisa.id),
             coisa: coisa,
             lAcoes: [
               SlidableAction(
@@ -232,6 +240,15 @@ class _ListasWidget extends StatelessWidget {
         }).toList(),
       ),
     );
+  }
+
+  void _onReorder(int oldIndex, int newIndex) {
+    final lSelecionada = listas[selecionada]!;
+
+    if (newIndex > oldIndex) newIndex -= 1;
+ 
+    lSelecionada.insert(newIndex, lSelecionada.removeAt(oldIndex));
+    onAtualizaListagem();
   }
 }
 

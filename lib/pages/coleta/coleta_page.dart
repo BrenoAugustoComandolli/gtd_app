@@ -48,6 +48,10 @@ class _ColetaPageState extends State<ColetaPage> {
                 _ListaCoisasWidget(
                   lCoisas: lCoisas,
                   onDelete: onDelete,
+                  onAtualizaListagem: () {
+                    repository.salvaListaCoisas(lCoisas);
+                    setState(() {});
+                  },
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -85,6 +89,7 @@ class _ColetaPageState extends State<ColetaPage> {
 
     setState(() {
       lCoisas.add(CoisaModel(
+        id: UniqueKey().toString(),
         descricao: text,
         dataCriacao: DateTime.now(),
       ));
@@ -262,19 +267,23 @@ class _ListaCoisasWidget extends StatelessWidget {
   const _ListaCoisasWidget({
     required this.lCoisas,
     required this.onDelete,
+    required this.onAtualizaListagem,
   });
 
   final List<CoisaModel> lCoisas;
   final Function(CoisaModel) onDelete;
+  final VoidCallback onAtualizaListagem;
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: ListView(
+      child: ReorderableListView(
         shrinkWrap: true,
+        onReorder: _onReorder,
         children: [
           for (CoisaModel coisa in lCoisas)
             CoisasItemWidget(
+              key: Key(coisa.id),
               coisa: coisa,
               lAcoes: [
                 SlidableAction(
@@ -289,6 +298,13 @@ class _ListaCoisasWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onReorder(int oldIndex, int newIndex) {
+    if (newIndex > oldIndex) newIndex -= 1;
+
+    lCoisas.insert(newIndex, lCoisas.removeAt(oldIndex));
+    onAtualizaListagem();
   }
 }
 

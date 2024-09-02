@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gtd_app/consts/app_mgs_consts.dart';
 import 'package:gtd_app/pages/coleta/coleta_page.dart';
+import 'package:gtd_app/pages/listas/listas_page.dart';
 import 'package:gtd_app/visual/cores_sistema.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   static const List<Widget> _pages = [
     ColetaPage(),
-    PlaceholderWidget(color: Colors.blue),
-    PlaceholderWidget(color: Colors.green),
+    ListasPage(),
   ];
 
   @override
@@ -31,12 +31,8 @@ class _HomePageState extends State<HomePage> {
               label: AppMgsConsts.titleColetaPage,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
+              icon: Icon(Icons.playlist_add_check_circle),
+              label: AppMgsConsts.labelListas,
             ),
           ],
           currentIndex: _selecionada,
@@ -49,18 +45,5 @@ class _HomePageState extends State<HomePage> {
 
   void _onTapPage(int index) {
     setState(() => _selecionada = index);
-  }
-}
-
-class PlaceholderWidget extends StatelessWidget {
-  final Color color;
-
-  const PlaceholderWidget({required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: color,
-    );
   }
 }

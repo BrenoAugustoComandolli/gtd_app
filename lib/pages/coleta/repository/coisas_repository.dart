@@ -15,7 +15,8 @@ class CoisasRepository {
     return jsonDecoded.map((e) => CoisaModel.fromJson(e)).toList();
   }
 
-  void salvaListaCoisas(List<CoisaModel> lCoisas) {
+  void salvaListaCoisas(List<CoisaModel> lCoisas) async {
+    sharedPreferences = await SharedPreferences.getInstance();
     final String jsonString = json.encode(lCoisas);
     sharedPreferences.setString(listaCoisasKey, jsonString);
   }

@@ -10,11 +10,22 @@ class ThemeDataClaro implements IThemeData {
         seedColor: CoresSistema.primaryColor,
       ),
       appBarTheme: const AppBarTheme(
+        foregroundColor: Colors.white,
         backgroundColor: CoresSistema.primaryColor,
         titleTextStyle: TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 20,
         ),
+      ),
+      checkboxTheme: const CheckboxThemeData(
+        side: BorderSide(
+          width: 2,
+          color: CoresSistema.primaryColor,
+        ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: CoresSistema.primaryColor,
+        actionTextColor: Colors.white,
       ),
       iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(

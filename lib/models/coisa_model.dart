@@ -4,11 +4,8 @@ class CoisaModel {
     required this.dataCriacao,
   });
 
-  final String descricao;
+  String descricao;
   final DateTime dataCriacao;
-  DateTime? dataFechamento;
-  DateTime? dataInicio;
-  DateTime? dataFinal;
 
   factory CoisaModel.fromJson(Map<String, dynamic> json) {
     return CoisaModel(
@@ -16,7 +13,7 @@ class CoisaModel {
       dataCriacao: DateTime.parse(json['dataCriacao']),
     );
   }
-  
+
   Map<String, dynamic> toJson() {
     return {
       'descricao': descricao,

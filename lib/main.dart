@@ -18,7 +18,7 @@ class AppWidget extends StatelessWidget {
       title: AppMgsConsts.title,
       theme: ThemeDataClaro().data(),
       darkTheme: ThemeDataEscuro().data(),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.system,
       home: const HomePage(),
     );
   }

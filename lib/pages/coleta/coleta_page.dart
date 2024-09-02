@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gtd_app/consts/app_mgs_consts.dart';
 import 'package:gtd_app/models/coisa_model.dart';
+import 'package:gtd_app/pages/coleta/processo/processa_coisas_page.dart';
 import 'package:gtd_app/pages/coleta/repository/coisas_repository.dart';
 import 'package:gtd_app/pages/coleta/widgets/coisas_item_widget.dart';
 
@@ -58,7 +60,11 @@ class _ColetaPageState extends State<ColetaPage> {
                       onPressed: showConfirmaLimpeza,
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 8),
+                _BotaoProcessamentoWidget(
+                  onPressed: _executarProcesso,
+                ),
               ],
             ),
           ),
@@ -99,8 +105,10 @@ class _ColetaPageState extends State<ColetaPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(AppMgsConsts.msgRemocao(coisa.descricao)),
-        backgroundColor: Colors.white,
+        content: Text(
+          AppMgsConsts.msgRemocao(coisa.descricao),
+          style: const TextStyle(color: Colors.white),
+        ),
         action: SnackBarAction(
           label: AppMgsConsts.labelBotaoDesfazer,
           onPressed: () {
@@ -133,6 +141,44 @@ class _ColetaPageState extends State<ColetaPage> {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  void _executarProcesso() {
+    if (lCoisas.isNotEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return ProcessaCoisasPage(
+            lCoisas: lCoisas,
+            onAtualizaListagem: () => setState(() {}),
+          );
+        },
+      );
+    }
+  }
+}
+
+class _BotaoProcessamentoWidget extends StatelessWidget {
+  const _BotaoProcessamentoWidget({required this.onPressed});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 20),
+      child: TextButton(
+        onPressed: onPressed,
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(AppMgsConsts.labelProcessar),
+            SizedBox(width: 8),
+            Icon(Icons.cached_rounded),
+          ],
+        ),
       ),
     );
   }
@@ -230,7 +276,15 @@ class _ListaCoisasWidget extends StatelessWidget {
           for (CoisaModel coisa in lCoisas)
             CoisasItemWidget(
               coisa: coisa,
-              onDelete: onDelete,
+              lAcoes: [
+                SlidableAction(
+                  onPressed: (BuildContext context) => onDelete(coisa),
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete,
+                  label: AppMgsConsts.labelBotaoDeletar,
+                ),
+              ],
             ),
         ],
       ),

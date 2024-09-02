@@ -14,9 +14,19 @@ class ThemeDataEscuro implements IThemeData {
       appBarTheme: const AppBarTheme(
         backgroundColor: CoresSistema.primaryColor,
         titleTextStyle: TextStyle(
-          color: Colors.white, // Mudança para branco, compatível com fundo escuro
+          color: Colors.white,
           fontSize: 20,
         ),
+      ),
+      checkboxTheme: const CheckboxThemeData(
+        side: BorderSide(
+          width: 2,
+          color: CoresSistema.primaryColor,
+        ),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: CoresSistema.primaryColor,
+        actionTextColor: Colors.white,
       ),
       iconButtonTheme: const IconButtonThemeData(
         style: ButtonStyle(
@@ -26,7 +36,7 @@ class ThemeDataEscuro implements IThemeData {
                 Radius.circular(7),
               ),
               side: BorderSide(
-                color: Colors.white, // Manter cor branca para contraste
+                color: Colors.white,
               ),
             ),
           ),
@@ -65,7 +75,7 @@ class ThemeDataEscuro implements IThemeData {
       ),
       textTheme: const TextTheme(
         titleMedium: TextStyle(
-          color: Colors.white, // Mudança para branco, compatível com fundo escuro
+          color: Colors.white,
           fontSize: 20,
         ),
       ),

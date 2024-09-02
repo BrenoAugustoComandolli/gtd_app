@@ -5,6 +5,7 @@ import 'package:gtd_app/models/coisa_model.dart';
 import 'package:gtd_app/pages/coleta/processo/processa_coisas_page.dart';
 import 'package:gtd_app/pages/coleta/repository/coisas_repository.dart';
 import 'package:gtd_app/pages/coleta/widgets/coisas_item_widget.dart';
+import 'package:uuid/uuid.dart';
 
 class ColetaPage extends StatefulWidget {
   const ColetaPage({super.key});
@@ -16,6 +17,7 @@ class ColetaPage extends StatefulWidget {
 class _ColetaPageState extends State<ColetaPage> {
   final TextEditingController controller = TextEditingController();
   final CoisasRepository repository = CoisasRepository();
+  var uuid = const Uuid();
 
   List<CoisaModel> lCoisas = [];
   String? errorText;
@@ -89,7 +91,7 @@ class _ColetaPageState extends State<ColetaPage> {
 
     setState(() {
       lCoisas.add(CoisaModel(
-        id: UniqueKey().toString(),
+        id: uuid.v4(),
         descricao: text,
         dataCriacao: DateTime.now(),
       ));

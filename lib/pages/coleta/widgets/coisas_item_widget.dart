@@ -52,7 +52,7 @@ class _ConteudoCoisaWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          DateFormat('dd/MM/yyyy - hh:mm:ss').format(coisa.dataCriacao),
+          DateFormat('dd/MM/yyyy - HH:mm:ss').format(coisa.dataCriacao),
           style: const TextStyle(fontSize: 12),
         ),
         Text(

@@ -1,16 +1,18 @@
 class AppMgsConsts {
   static const String title = 'Getting Things Done App';
-  static const String titleColetaPage = 'Coleta';
+  static const String titleTarefasPage = 'Tarefas';
   static const String labelCampoNovo = 'Adicione um novo item';
-  static const String hintCampoNovo = 'Ex. limpar o quarto';
+  static const String hintCampoNovo = 'Ex. estudar inglês';
   static const String msgDescriaoObrigatoria = 'Descrição não pode ser vazia!';
   static const String labelBotaoCancelar = 'Cancelar';
+  static const String labelBotaoSalvar = 'Salvar';
   static const String labelBotaoLimparTudo = 'Limpar tudo';
   static const String titleLimpaTudo = 'Limpar tudo?';
   static const String msgLimpaTudo = 'Você tem certeza que deseja apagar a listagem?';
   static const String labelBotaoDeletar = 'Deletar';
   static const String labelBotaoConfirmar = 'Confirmar';
   static const String labelBotaoDesfazer = 'Desfazer';
+  static const String labelBotaoEditar = 'Editar';
 
   static String msgRemocao(qtdItens) => 'Item $qtdItens foi removido com sucesso!';
 
@@ -29,6 +31,7 @@ class AppMgsConsts {
 
   static String msgErroCarregamentoLista(erro) => 'Erro ao carregar listas: $erro';
 
+  static const String labelProjetos = 'Projetos';
   static const String labelListas = 'Listas';
   static const String labelProcessar = 'Processar';
   static const String labelMoverTalvez = 'Talvez/Um dia';
@@ -36,11 +39,14 @@ class AppMgsConsts {
   static const String labelFinalizar = 'Finalizar/Fazer agora';
   static const String labelEmEspera = 'Ações em espera';
   static const String titleProximaAcao = 'Próximas ações';
-  static const String labelProjetos = 'Projetos';
   static const String labelAgendar = 'Agendar/Calendário';
   static const String labelDescricaoOperacao = 'Escolher destino para o tópico abaixo:';
   static const String labelPrimeiroPasso = 'Qual é o primeiro passo?';
   static const String hintPrimeiroPasso = 'Ex. Anotar preço';
-  static const String labelEhProjeto = 'Projeto';
   static const String titleMovendoItem = 'Selecione a lista a quase deseja mover o item:';
+  static const String labelComboVazia = '';
+  static const String labelJanelaEditar = 'Editar item';
+  static const String labelDescricao = 'Descrição';
+
+  static String msgDescricaoObrigatoria = 'Informe a descrição';
 }

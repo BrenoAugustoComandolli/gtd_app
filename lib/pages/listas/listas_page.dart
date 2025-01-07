@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:gtd_app/consts/app_mgs_consts.dart';
-import 'package:gtd_app/models/coisa_model.dart';
-import 'package:gtd_app/pages/coleta/widgets/coisas_item_widget.dart';
+import 'package:gtd_app/models/tarefa_model.dart';
 import 'package:gtd_app/pages/listas/repository/lista_repository.dart';
 import 'package:gtd_app/visual/cores_sistema.dart';
+import 'package:gtd_app/widgets/coisas_item_widget.dart';
 
 class ListasPage extends StatefulWidget {
   const ListasPage({super.key});
@@ -16,7 +16,7 @@ class ListasPage extends StatefulWidget {
 class _ListasPageState extends State<ListasPage> {
   final ListaRepository repository = ListaRepository();
 
-  late final Map<String, List<CoisaModel>> listas;
+  late final Map<String, List<TarefaModel>> listas;
   String selecionada = AppMgsConsts.titleProximas;
 
   @override
@@ -88,19 +88,19 @@ class _ListasPageState extends State<ListasPage> {
     );
   }
 
-  void onDelete(CoisaModel coisa) {
-    CoisaModel? deletado = coisa;
-    List<CoisaModel> lSelecionada = listas[selecionada]!;
-    int deletadoIndex = lSelecionada.indexOf(coisa);
+  void onDelete(TarefaModel tarefa) {
+    TarefaModel? deletado = tarefa;
+    List<TarefaModel> lSelecionada = listas[selecionada]!;
+    int deletadoIndex = lSelecionada.indexOf(tarefa);
 
-    setState(() => lSelecionada.remove(coisa));
+    setState(() => lSelecionada.remove(tarefa));
     repository.salvaListas(listas);
     ScaffoldMessenger.of(context).clearSnackBars();
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          AppMgsConsts.msgRemocao(coisa.descricao),
+          AppMgsConsts.msgRemocao(tarefa.descricao),
           style: const TextStyle(color: Colors.white),
         ),
         action: SnackBarAction(
@@ -115,7 +115,7 @@ class _ListasPageState extends State<ListasPage> {
     );
   }
 
-  void onMove(CoisaModel coisa) {
+  void onMove(TarefaModel tarefa) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -142,8 +142,8 @@ class _ListasPageState extends State<ListasPage> {
                   title: Text(key),
                   onTap: () {
                     setState(() {
-                      listas[selecionada]!.remove(coisa);
-                      listas[key]!.add(coisa);
+                      listas[selecionada]!.remove(tarefa);
+                      listas[key]!.add(tarefa);
                       repository.salvaListas(listas);
                     });
                     Navigator.of(context).pop();
@@ -166,7 +166,7 @@ class _ComboListasWidget extends StatelessWidget {
   });
 
   final String selecionada;
-  final Map<String, List<CoisaModel>> listas;
+  final Map<String, List<TarefaModel>> listas;
   final ValueChanged<String?>? onChanged;
 
   @override
@@ -201,9 +201,9 @@ class _ListasWidget extends StatelessWidget {
   });
 
   final String selecionada;
-  final Map<String, List<CoisaModel>> listas;
-  final Function(CoisaModel coisa) onDelete;
-  final Function(CoisaModel coisa) onMove;
+  final Map<String, List<TarefaModel>> listas;
+  final Function(TarefaModel tarefa) onDelete;
+  final Function(TarefaModel tarefa) onMove;
   final VoidCallback onAtualizaListagem;
 
   @override
@@ -216,20 +216,21 @@ class _ListasWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ReorderableListView(
         onReorder: _onReorder,
-        children: listas[selecionada]!.map((CoisaModel coisa) {
+        children: listas[selecionada]!.map((TarefaModel tarefa) {
           return CoisasItemWidget(
-            key: Key(coisa.id),
-            coisa: coisa,
+            key: Key(tarefa.id),
+            coisa: tarefa,
+            onEditar: onAtualizaListagem,
             lAcoes: [
               SlidableAction(
-                onPressed: (BuildContext context) => onDelete(coisa),
+                onPressed: (BuildContext context) => onDelete(tarefa),
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: AppMgsConsts.labelBotaoDeletar,
               ),
               SlidableAction(
-                onPressed: (BuildContext context) => onMove(coisa),
+                onPressed: (BuildContext context) => onMove(tarefa),
                 backgroundColor: Colors.blue,
                 foregroundColor: Colors.white,
                 icon: Icons.move_to_inbox,
@@ -246,7 +247,7 @@ class _ListasWidget extends StatelessWidget {
     final lSelecionada = listas[selecionada]!;
 
     if (newIndex > oldIndex) newIndex -= 1;
- 
+
     lSelecionada.insert(newIndex, lSelecionada.removeAt(oldIndex));
     onAtualizaListagem();
   }

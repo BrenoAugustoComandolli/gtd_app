@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gtd_app/consts/app_mgs_consts.dart';
-import 'package:gtd_app/pages/coleta/coleta_page.dart';
 import 'package:gtd_app/pages/listas/listas_page.dart';
+import 'package:gtd_app/pages/projetos/projetos_page.dart';
+import 'package:gtd_app/pages/tarefas/tarefas_page.dart';
 import 'package:gtd_app/visual/cores_sistema.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +17,8 @@ class _HomePageState extends State<HomePage> {
   int _selecionada = 0;
 
   static const List<Widget> _pages = [
-    ColetaPage(),
+    TarefasPage(),
+    ProjetosPage(),
     ListasPage(),
   ];
 
@@ -36,7 +38,11 @@ class _HomePageState extends State<HomePage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.collections_bookmark_rounded),
-              label: AppMgsConsts.titleColetaPage,
+              label: AppMgsConsts.titleTarefasPage,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.playlist_add_check_circle_rounded),
+              label: AppMgsConsts.labelProjetos,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.playlist_add_check_circle),
